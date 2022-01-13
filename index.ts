@@ -12,7 +12,7 @@ server.get('/cat/bev*', async (request, response) => {
 });
 
 server.get('/search/*', async (request: Request, response) => {
-    let query: string = request.url.substring(8);
+    let query: string = decodeURIComponent(request.url.substring(8));
     let result = {};
     let data: Map<String,Object> = JSON.parse(await filesystem.readFile('bev.json','utf8'));
     for (const key in data) {
