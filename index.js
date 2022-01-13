@@ -15,7 +15,7 @@ server.get('/search/*', async (request, response) => {
     let data = JSON.parse(await filesystem.readFile('bev.json', 'utf8'));
     for (const key in data) {
         let item = data[key.toString()];
-        if (item.name.includes(query)) {
+        if (item.name.toLowerCase().includes(query.toLowerCase())) {
             result[key.toString()] = data[key.toString()];
         }
     }

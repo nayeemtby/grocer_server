@@ -17,10 +17,11 @@ server.get('/search/*', async (request: Request, response) => {
     let data: Map<String,Object> = JSON.parse(await filesystem.readFile('bev.json','utf8'));
     for (const key in data) {
         let item = data[key.toString()];
-        if ((item.name as String).includes(query) ) {
+        if ((item.name as String).toLowerCase().includes(query.toLowerCase()) ) {
             result[key.toString()] = data[key.toString()];
         }
     }
+    
     response.status(200).send(JSON.stringify(result));
 });
 
